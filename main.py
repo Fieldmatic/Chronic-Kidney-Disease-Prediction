@@ -4,7 +4,9 @@ from sklearn.model_selection import train_test_split
 import warnings
 
 from dataPreProcessing import random_value_imputation, impute_mode
+from decisionTreeClassifier import decision_tree_classify
 from featureEncode import encode_features
+from kNN import knn_classify
 
 warnings.filterwarnings('ignore')
 plt.style.use('fivethirtyeight')
@@ -68,3 +70,6 @@ if __name__ == '__main__':
     preProcess_data()
     encode_features(df, cat_cols)
     build_model()
+
+    knn_classify(X_train, Y_train, X_test, Y_test)
+    decision_tree_classify(X_train, Y_train, X_test, Y_test)
