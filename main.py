@@ -7,12 +7,14 @@ from dataPreProcessing import random_value_imputation, impute_mode
 from decisionTreeClassifier import decision_tree_classify
 from featureEncode import encode_features
 from kNN import knn_classify
+from randomForestClassifier import random_forest_classify
 
 warnings.filterwarnings('ignore')
 plt.style.use('fivethirtyeight')
 pd.set_option('display.max_columns', 26)
 
 global X_train, X_test, Y_train, Y_test, df, cat_cols, num_cols
+
 
 def load_dataset():
     global df
@@ -52,9 +54,10 @@ def build_model():
     y = df[dep_col]
     X_train, X_test, Y_train, Y_test = train_test_split(x, y, test_size=0.30, random_state=0)
 
+
 def preProcess_data():
     for col in num_cols:
-        random_value_imputation(df,col)
+        random_value_imputation(df, col)
 
     random_value_imputation(df, 'red_blood_cells')
     random_value_imputation(df, 'pus_cell')
@@ -62,7 +65,7 @@ def preProcess_data():
     for col in cat_cols:
         impute_mode(df, col)
 
-# Press the green button in the gutter to run the script.
+
 if __name__ == '__main__':
     load_dataset()
     replace_incorrect_values()
@@ -73,3 +76,4 @@ if __name__ == '__main__':
 
     knn_classify(X_train, Y_train, X_test, Y_test)
     decision_tree_classify(X_train, Y_train, X_test, Y_test)
+    random_forest_classify(X_train, Y_train, X_test, Y_test)
