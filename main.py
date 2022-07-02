@@ -20,7 +20,6 @@ global X_train, X_test, Y_train, Y_test, df, cat_cols, num_cols
 def load_dataset():
     global df
     df = pd.read_csv('./Dataset/kidney_disease.csv')
-    df.head()
     df.drop('id', axis=1, inplace=True)
     df.columns = ['age', 'blood_pressure', 'specific_gravity', 'albumin', 'sugar', 'red_blood_cells', 'pus_cell',
                   'pus_cell_clumps', 'bacteria', 'blood_glucose_random', 'blood_urea', 'serum_creatinine', 'sodium',
@@ -69,13 +68,15 @@ def preProcess_data():
 
 if __name__ == '__main__':
     load_dataset()
-    replace_incorrect_values()
     convert_to_numeric()
+    replace_incorrect_values()
     preProcess_data()
     encode_features(df, cat_cols)
     build_model()
 
-    knn_classify(X_train, Y_train, X_test, Y_test)
+    print(df.head())
+
+    #knn_classify(X_train, Y_train, X_test, Y_test)
     decision_tree_classify(X_train, Y_train, X_test, Y_test)
-    random_forest_classify(X_train, Y_train, X_test, Y_test)
-    extra_trees_classify(X_train, Y_train, X_test, Y_test)
+    #random_forest_classify(X_train, Y_train, X_test, Y_test)
+    #extra_trees_classify(X_train, Y_train, X_test, Y_test)

@@ -1,5 +1,6 @@
 from sklearn.preprocessing import LabelEncoder
 
+
 def encode_features(df, cat_cols):
     le = LabelEncoder()
 
