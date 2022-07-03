@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
+import plotly.express as px
 from sklearn.model_selection import train_test_split
 import warnings
 
@@ -76,7 +77,15 @@ if __name__ == '__main__':
 
     print(df.head())
 
-    #knn_classify(X_train, Y_train, X_test, Y_test)
-    decision_tree_classify(X_train, Y_train, X_test, Y_test)
-    #random_forest_classify(X_train, Y_train, X_test, Y_test)
-    #extra_trees_classify(X_train, Y_train, X_test, Y_test)
+    knn_acc = knn_classify(X_train, Y_train, X_test, Y_test)
+    decision_tree_acc = decision_tree_classify(X_train, Y_train, X_test, Y_test)
+    random_forest_acc = random_forest_classify(X_train, Y_train, X_test, Y_test)
+    extra_trees_acc = extra_trees_classify(X_train, Y_train, X_test, Y_test)
+
+    models = pd.DataFrame({'Model': ['KNN', 'Decision Tree', 'Random Forest', 'Extra Trees'],
+                           'Score': [knn_acc, decision_tree_acc, random_forest_acc, extra_trees_acc]})
+    models.sort_values(by='Score', ascending=False)
+
+    bar = px.bar(data_frame=models, x='Score', y='Model', color='Score', template='plotly_dark',
+                 title='Models Comparison')
+    bar.show()

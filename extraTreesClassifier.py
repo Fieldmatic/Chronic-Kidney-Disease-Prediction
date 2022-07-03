@@ -15,3 +15,5 @@ def extra_trees_classify(X_train, Y_train, X_test, Y_test):
 
     print(f"Confusion Matrix :- \n{confusion_matrix(Y_test, etc.predict(X_test))}\n")
     print(f"Classification Report :- \n {classification_report(Y_test, etc.predict(X_test))}")
+
+    return etc_acc

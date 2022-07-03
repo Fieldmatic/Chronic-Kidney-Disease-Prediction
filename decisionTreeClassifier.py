@@ -28,3 +28,5 @@ def decision_tree_classify(X_train, Y_train, X_test, Y_test):
     print(f"Confusion Matrix :- \n{confusion_matrix(Y_test, dtc.predict(X_test))}\n")
     print(f"Classification Report :- \n {classification_report(Y_test, dtc.predict(X_test))}")
 
+    return dtc_acc
+
