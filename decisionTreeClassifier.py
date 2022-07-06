@@ -4,7 +4,6 @@ from sklearn.tree import DecisionTreeClassifier
 
 def decision_tree_classify(X_train, Y_train, X_test, Y_test):
     dtc = DecisionTreeClassifier()
-    dtc.fit(X_train, Y_train)
     grid_param = {
         'criterion': ['gini', 'entropy'],
         'max_depth': [3, 5, 7, 10],

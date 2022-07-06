@@ -27,6 +27,10 @@ def load_dataset():
                   'potassium', 'haemoglobin', 'packed_cell_volume', 'white_blood_cell_count', 'red_blood_cell_count',
                   'hypertension', 'diabetes_mellitus', 'coronary_artery_disease', 'appetite', 'peda_edema',
                   'aanemia', 'class']
+    global cat_cols
+    cat_cols = [col for col in df.columns if df[col].dtype == 'object']
+    global num_cols
+    num_cols = [col for col in df.columns if df[col].dtype != 'object']
 
 
 def convert_to_numeric():
@@ -36,10 +40,6 @@ def convert_to_numeric():
 
 
 def replace_incorrect_values():
-    global cat_cols
-    cat_cols = [col for col in df.columns if df[col].dtype == 'object']
-    global num_cols
-    num_cols = [col for col in df.columns if df[col].dtype != 'object']
     df['diabetes_mellitus'].replace(to_replace={'\tno': 'no', '\tyes': 'yes', ' yes': 'yes'}, inplace=True)
     df['coronary_artery_disease'] = df['coronary_artery_disease'].replace(to_replace='\tno', value='no')
     df['class'] = df['class'].replace(to_replace={'ckd\t': 'ckd', 'notckd': 'not ckd'})
